@@ -8,11 +8,9 @@ Kohana 3.3 module orm-union
 1. Download the module into your modules subdirectory
 2. Enable the module in your bootstrap file
 
-### Example
+## Example
 
-## ORM
-
-#### Trait
+#### ORM Trait
 
     class Model_Forwarding extends ORM {
         use Trait_Model_ORM_Union;
@@ -24,7 +22,7 @@ and
         use Trait_Model_ORM_Union;
     ...
 
-## Use
+### Use
 
         $order = ORM::factory('Order')->where('user_id', '=', 1);
         $forwarding = ORM::factory('Forwarding')->where('user_id', '=', 1);
