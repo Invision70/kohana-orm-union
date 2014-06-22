@@ -50,10 +50,10 @@ class ORM_Union_Result implements Countable, Iterator, ArrayAccess {
             $object_data[$object][] = $item_id;
         }
 
-        foreach ($object_data as $object_name => $items)
+        foreach ($object_data as $object => $items)
         {
             // @TODO - fix it
-            $object_name = str_replace('_', ' ', $object_name);
+            $object_name = str_replace('_', ' ', $object);
             $object_name = ucwords(strtolower($object_name));
             $object_name = str_replace(' ', '_', $object_name);
 
