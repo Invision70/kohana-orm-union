@@ -11,8 +11,10 @@ defined('SYSPATH') or die('No direct script access.');
    $union = ORM_Union::initial([$order, $forwarding], ['created'])->order_by('created', 'desc');
    $result = $union->find_all();
    </code>
- * @author
- * @package
+ *
+ * @author Invision <Invision70@gmail.com>
+ * @package quick-web
+ * @link https://github.com/Invision70/kohana-orm-union
  */
 class ORM_Union {
 

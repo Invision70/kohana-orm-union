@@ -2,6 +2,10 @@
 
 /**
  * Примесь используется в модели для поддержки объединенного запроса (UNION)
+ *
+ * @author Invision <Invision70@gmail.com>
+ * @package quick-web
+ * @link https://github.com/Invision70/kohana-orm-union
  */
 trait Trait_Model_ORM_Union {
 

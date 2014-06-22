@@ -106,9 +106,12 @@ class ORM_Union_Result implements Countable, Iterator, ArrayAccess {
 
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset)) {
+        if (is_null($offset))
+        {
             $this->_result[] = $value;
-        } else {
+        }
+        else
+        {
             $this->_result[$offset] = $value;
         }
     }
