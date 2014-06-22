@@ -4,8 +4,10 @@ defined('SYSPATH') or die('No direct script access.');
 
 /**
  * Результаты запроса объединения. Итератор.
- * @author
- * @package
+ *
+ * @author Invision <Invision70@gmail.com>
+ * @package quick-web
+ * @link https://github.com/Invision70/kohana-orm-union
  */
 class ORM_Union_Result implements Countable, Iterator, ArrayAccess {
 
@@ -48,9 +50,14 @@ class ORM_Union_Result implements Countable, Iterator, ArrayAccess {
             $object_data[$object][] = $item_id;
         }
 
-        foreach ($object_data as $object => $items)
+        foreach ($object_data as $object_name => $items)
         {
-            $orm_object = ORM::factory(Text::camel($object));
+            // @TODO - fix it
+            $object_name = str_replace('_', ' ', $object_name);
+            $object_name = ucwords(strtolower($object_name));
+            $object_name = str_replace(' ', '_', $object_name);
+
+            $orm_object = ORM::factory($object_name);
             $this->_model_result[$object] = $orm_object->where($orm_object->object_name().'.id', 'IN', $items)->find_all()->as_array('id');
         }
 
