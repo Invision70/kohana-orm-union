@@ -70,17 +70,10 @@ class ORM_Union {
      */
     public function __call($name, $args = [])
     {
-        if ($name == 'count_all')
+        $builder = $this->_builder();
+        if (method_exists($builder, $name))
         {
-            return DB::select(array(DB::expr('COUNT(*)'), 'c'))->from(array($this->_builder(), 'total'))->execute()->get('c');
-        }
-        else
-        {
-            $builder = $this->_builder();
-            if (method_exists($builder, $name))
-            {
-                call_user_func_array(array($builder, $name), $args);
-            }
+            call_user_func_array(array($builder, $name), $args);
         }
 
         return $this;
@@ -130,7 +123,16 @@ class ORM_Union {
     }
 
     /**
-     * Получить результат
+     * Количество записей
+     * @return int
+     */
+    public function count_all()
+    {
+        return DB::select(array(DB::expr('COUNT(*)'), 'c'))->from(array($this->_builder(), 'total'))->execute()->get('c');
+    }
+
+    /**
+     * Получить данные
      * @return ORM_Union_Result
      */
     public function find_all()
