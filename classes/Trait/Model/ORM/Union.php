@@ -26,9 +26,17 @@ trait Trait_Model_ORM_Union {
             array($this->object_name().'.id', 'id'),
             array(DB::expr("'{$this->object_name()}'"), 'object')
         );
+        $table_columns = $this->table_columns();
         foreach ($columns as $column)
         {
-            $select[] = array($this->object_name().'.'.$column, $column);
+            if ( ! isset($table_columns[$column]))
+            {
+                $select[] = array(DB::expr('NULL'), $column);
+            }
+            else
+            {
+                $select[] = array($this->object_name().'.'.$column, $column);
+            }
         }
         return $this->_db_builder->select_array($select)->from(array($this->_table_name, $this->_object_name));
     }
